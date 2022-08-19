@@ -20,6 +20,9 @@ func _process(_delta):
 		
 		play_sound("confirm")
 	
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+	
 	match highlighted:
 		1:
 			$Label_Start.add_color_override("font_color", '#00ffff')

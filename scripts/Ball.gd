@@ -10,17 +10,15 @@ onready var Wall = {
 	right = get_parent().get_node("Wall").get_node("Wall_Right")
 }
 
-var speed = 100
+export var speed = 100
 
 var _direction = Vector2.ZERO
 
 func _ready():
-	_direction.x = rand_range(-1, 1)
-	_direction.y = -1
-	_direction.normalized()
+	pass
 
 func _physics_process(delta):
-	var _velocity = speed * _direction * delta
+	var _velocity = speed * _direction.normalized() * delta
 	var _collision = move_and_collide(_velocity)
 	
 	if _collision:
@@ -33,3 +31,7 @@ func _physics_process(delta):
 		
 		if _collision.collider == Player:
 			emit_signal("hit_player")
+
+func serve():
+		_direction.x = rand_range(-1, 1)
+		_direction.y = -1

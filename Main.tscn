@@ -3,7 +3,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/background.png" type="Texture" id=2]
 [ext_resource path="res://scene/TitlescreenScene.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/SceneManager.gd" type="Script" id=4]
+[ext_resource path="res://assets/sounds/hurt.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/confirm.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/paddle_hit.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/wall_hit.wav" type="AudioStream" id=7]
@@ -31,18 +31,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="SceneManager" type="Node" parent="."]
-script = ExtResource( 4 )
+[node name="TitlescreenScene" parent="." instance=ExtResource( 3 )]
 
-[node name="TitlescreenScene" parent="SceneManager" instance=ExtResource( 3 )]
+[node name="SoundManager" type="Node" parent="."]
 
-[node name="SoundManager" type="Node" parent="SceneManager"]
-
-[node name="paddle_hit" type="AudioStreamPlayer" parent="SceneManager/SoundManager"]
+[node name="paddle_hit" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource( 6 )
 
-[node name="confirm" type="AudioStreamPlayer" parent="SceneManager/SoundManager"]
+[node name="confirm" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource( 5 )
 
-[node name="wall_hit" type="AudioStreamPlayer" parent="SceneManager/SoundManager"]
+[node name="wall_hit" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource( 7 )
+
+[node name="hurt" type="AudioStreamPlayer" parent="SoundManager"]
+stream = ExtResource( 4 )

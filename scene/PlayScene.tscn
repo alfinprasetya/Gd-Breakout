@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/PlayScene.gd" type="Script" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/HUD.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 230, 10 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 140 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 240, 19.5 )
 
 [node name="PlayScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,7 +53,18 @@ shape = SubResource( 3 )
 [node name="Ball" parent="." instance=ExtResource( 3 )]
 position = Vector2( 216, 190 )
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
+
+[node name="Fallzone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fallzone"]
+position = Vector2( 216, 263.5 )
+shape = SubResource( 4 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [connection signal="hit_player" from="Ball" to="." method="_on_Ball_hit_player"]
 [connection signal="hit_wall" from="Ball" to="." method="_on_Ball_hit_wall"]
+[connection signal="body_entered" from="Fallzone" to="." method="_on_Fallzone_body_entered"]
