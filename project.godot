@@ -23,6 +23,7 @@ _global_script_class_icons={
 config/name="Breakout"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+config/quit_on_go_back=false
 
 [display]
 
@@ -63,6 +64,7 @@ texture={
 2d_physics/layer_2="ball"
 2d_physics/layer_3="wall"
 2d_physics/layer_4="fallzone"
+2d_physics/layer_5="brick"
 
 [physics]
 

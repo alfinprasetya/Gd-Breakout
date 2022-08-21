@@ -6,7 +6,8 @@ onready var gSounds = {
 	paddle_hit = $SoundManager/paddle_hit,
 	confirm = $SoundManager/confirm,
 	wall_hit = $SoundManager/wall_hit,
-	hurt = $SoundManager/hurt
+	hurt = $SoundManager/hurt,
+	brick_hit_2 = $SoundManager/brick_hit_2
 }
 
 func _ready() -> void:
@@ -23,6 +24,10 @@ func change(scene):
 	
 	current_scene.queue_free()
 	current_scene = next_scene
+	$Timer.start()
 
 func play_sound(sound):
 	gSounds[sound].play()
+
+func _on_Timer_timeout():
+	current_scene.set_process(true)

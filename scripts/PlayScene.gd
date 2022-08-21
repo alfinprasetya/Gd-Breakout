@@ -2,6 +2,7 @@ extends BaseScene
 
 onready var Ball = $Ball
 onready var Player = $Player
+onready var HUD = $HUD
 
 var _serve = true
 
@@ -25,8 +26,13 @@ func _on_Ball_hit_wall() -> void:
 func _on_Ball_hit_player() -> void:
 	play_sound("paddle_hit")
 
+func _on_Ball_hit_brick() -> void:
+	play_sound("brick_hit_2")
+
 func _on_Fallzone_body_entered(body):
 	if body == Ball:
 		_serve = true
 		play_sound("hurt")
-		change_scene("Gameover")
+		HUD.health -= 1
+		if HUD.health <= 0:
+			change_scene("Gameover")

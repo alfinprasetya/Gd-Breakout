@@ -4,6 +4,9 @@ extends Node
 signal scene_changed(sceneName)
 signal play_sound(soundName)
 
+func _ready():
+	set_process(false)
+
 func change_scene(nextScene):
 	emit_signal("scene_changed", nextScene)
 
