@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if _serve:
 		Ball.position.x = Player.position.x
-		Ball.position.y = 190
+		Ball.position.y = Player.position.y - 10
 		if Input.is_action_just_pressed("ui_accept"):
 			_serve = false
 			Ball.serve()

@@ -7,9 +7,24 @@
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = -353.0
 script = ExtResource( 2 )
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.337255 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.027451, 0.0901961, 1 )
+
 [node name="Label_FPS" type="Label" parent="."]
+visible = false
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 40.0
@@ -21,7 +36,7 @@ text = "FPS: 0"
 [node name="Score" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -60.0
+margin_left = -90.0
 margin_top = 5.0
 margin_right = -10.0
 margin_bottom = 15.0
@@ -48,26 +63,25 @@ text = "0"
 align = 2
 
 [node name="Health" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -100.0
-margin_top = 6.0
-margin_right = -60.0
-margin_bottom = 15.0
+margin_left = 10.0
+margin_top = 8.0
 
 [node name="Heart" type="Sprite" parent="Health"]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 3 )
 centered = false
 hframes = 2
 
 [node name="Heart2" type="Sprite" parent="Health"]
-position = Vector2( 12, 0 )
+position = Vector2( 14.5, 0 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 3 )
 centered = false
 hframes = 2
 
 [node name="Heart3" type="Sprite" parent="Health"]
-position = Vector2( 24, 0 )
+position = Vector2( 29, 0 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 3 )
 centered = false
 hframes = 2

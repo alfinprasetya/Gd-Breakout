@@ -12,7 +12,7 @@ func _ready() -> void:
 	draw_score(score)
 	draw_health(health)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	fps = Engine.get_frames_per_second()
 	ui_fps.text = "FPS: " + str(fps)
 
