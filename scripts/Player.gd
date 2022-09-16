@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var speed = 200
-export var player_length = 4
+export (int, 1, 7) var player_length = 3
 
 onready var player_map = $PlayerMap
 

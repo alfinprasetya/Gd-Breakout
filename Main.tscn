@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/background.png" type="Texture" id=2]
 [ext_resource path="res://scene/TitlescreenScene.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sounds/hurt.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/confirm.wav" type="AudioStream" id=5]
@@ -20,7 +19,6 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -29,11 +27,12 @@ margin_left = 20.0
 margin_top = 62.0
 margin_right = 20.0
 margin_bottom = 62.0
-texture = ExtResource( 2 )
+rect_scale = Vector2( 0.5, 0.5 )
 expand = true
 stretch_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
+modulate = Color( 1, 1, 1, 0.313726 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.133333, 0.133333, 0.133333, 1 )
