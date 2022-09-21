@@ -1,16 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/fonts/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Titlescreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/font.tres" type="DynamicFont" id=3]
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
 [node name="TitlescreenScene" type="Control"]
@@ -28,24 +23,37 @@ text = "BREAKOUT"
 align = 1
 valign = 1
 
-[node name="Label_Start" type="Label" parent="."]
+[node name="Button_Start" type="Button" parent="."]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = 62.0
-margin_bottom = 78.0
-custom_fonts/font = SubResource( 1 )
+margin_left = -50.0
+margin_top = 60.0
+margin_right = 50.0
+margin_bottom = 80.0
+focus_neighbour_top = NodePath("../Button_Highscore")
+focus_neighbour_bottom = NodePath("../Button_Highscore")
+custom_fonts/font = ExtResource( 3 )
 text = "START"
-align = 1
-valign = 1
 
-[node name="Label_Highscore" type="Label" parent="."]
+[node name="Button_Highscore" type="Button" parent="."]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = 82.0
-margin_bottom = 98.0
-custom_fonts/font = SubResource( 2 )
+margin_left = -50.0
+margin_top = 90.0
+margin_right = 50.0
+margin_bottom = 110.0
+focus_neighbour_top = NodePath("../Button_Start")
+focus_neighbour_bottom = NodePath("../Button_Start")
+custom_fonts/font = ExtResource( 3 )
 text = "HIGHSCORE"
-align = 1
-valign = 1
+
+[connection signal="focus_entered" from="Button_Start" to="." method="_on_Button_Start_focus_entered"]
+[connection signal="mouse_entered" from="Button_Start" to="." method="_on_Button_Start_mouse_entered"]
+[connection signal="pressed" from="Button_Start" to="." method="_on_Button_Start_pressed"]
+[connection signal="focus_entered" from="Button_Highscore" to="." method="_on_Button_Highscore_focus_entered"]
+[connection signal="mouse_entered" from="Button_Highscore" to="." method="_on_Button_Highscore_mouse_entered"]
+[connection signal="pressed" from="Button_Highscore" to="." method="_on_Button_Highscore_pressed"]

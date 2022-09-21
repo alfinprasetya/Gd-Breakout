@@ -78,7 +78,6 @@ points = PoolVector2Array( 0, 1.91846, 16, 1.91846, 16, 13.8818, 0, 13.9753 )
 2/z_index = 0
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 216, 211 )
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )

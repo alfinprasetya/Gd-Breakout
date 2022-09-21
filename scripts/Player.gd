@@ -8,6 +8,8 @@ onready var player_map = $PlayerMap
 var _horizontal_direction = 0
 var _velocity = Vector2.ZERO
 var _length = 0
+var _is_dragging = false
+var _touch_pos = 0
 
 func _ready():
 	build_player(player_length)
@@ -32,11 +34,14 @@ func build_player(length :int):
 	_length = length * 16 * scale.x
 
 func _physics_process(_delta):
-	# Get direction from user input
-	_horizontal_direction = sign(
-		Input.get_action_strength("ui_right") 
-		- Input.get_action_strength("ui_left")
-	)
+	if _is_dragging:
+		var _x_dif = _touch_pos - position.x
+		_horizontal_direction = sign(_x_dif) if abs(_x_dif) >= 2 else 0
+	else:
+		_horizontal_direction = sign(
+			Input.get_action_strength("ui_right") 
+			- Input.get_action_strength("ui_left")
+		)
 	
 	# Calculate velocity
 	_velocity.x = _horizontal_direction * speed
@@ -46,3 +51,13 @@ func _physics_process(_delta):
 	position.y = 320
 	
 	_velocity = move_and_slide(_velocity)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			_is_dragging = true
+		else:
+			_is_dragging = false
+	
+	if _is_dragging and event is InputEventMouse:
+		_touch_pos = event.position.x

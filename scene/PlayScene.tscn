@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/PlayScene.gd" type="Script" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/font.tres" type="DynamicFont" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 90, 27 )
@@ -22,6 +23,7 @@ position = Vector2( 90, 320 )
 scale = Vector2( 0.7, 0.7 )
 collision_layer = 1
 collision_mask = 4
+speed = 150
 
 [node name="Wall" type="Node2D" parent="."]
 __meta__ = {
@@ -57,6 +59,7 @@ position = Vector2( 90, 310 )
 scale = Vector2( 0.7, 0.7 )
 collision_layer = 2
 collision_mask = 29
+speed = 100
 
 [node name="Fallzone" type="Area2D" parent="."]
 collision_layer = 8
@@ -66,15 +69,37 @@ collision_mask = 0
 position = Vector2( 90, 400 )
 shape = SubResource( 4 )
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_right = 180.0
-margin_bottom = 27.0
+margin_bottom = 380.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUD" parent="UI" instance=ExtResource( 4 )]
+anchor_bottom = 0.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
+[node name="Button_Launch" type="Button" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -35.0
+margin_top = -35.0
+margin_right = 35.0
+margin_bottom = -15.0
+custom_fonts/font = ExtResource( 5 )
+text = "Launch"
+
 [connection signal="hit_brick" from="Ball" to="." method="_on_Ball_hit_brick"]
 [connection signal="hit_player" from="Ball" to="." method="_on_Ball_hit_player"]
 [connection signal="hit_wall" from="Ball" to="." method="_on_Ball_hit_wall"]
 [connection signal="body_entered" from="Fallzone" to="." method="_on_Fallzone_body_entered"]
+[connection signal="pressed" from="UI/Button_Launch" to="." method="_on_Button_Launch_pressed"]
