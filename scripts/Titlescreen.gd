@@ -3,7 +3,7 @@ extends BaseScene
 onready var ButtonStart = $Button_Start
 onready var ButtonHigh = $Button_Highscore
 
-func _ready() -> void:
+func start() -> void:
 	ButtonStart.grab_focus()
 
 func _input(_event: InputEvent) -> void:

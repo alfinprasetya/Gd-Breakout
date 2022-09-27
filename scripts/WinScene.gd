@@ -10,7 +10,7 @@ func _input(_event: InputEvent) -> void:
 		get_tree().quit()
 
 func _on_Button_Start_pressed() -> void:
-	change_scene("Titlescreen")
+	change_scene("Play")
 	play_sound("confirm")
 
 func _on_Button_Start_mouse_entered() -> void:
@@ -18,4 +18,4 @@ func _on_Button_Start_mouse_entered() -> void:
 
 func load_level_parameters(new_level_parameters):
 	level_parameters = new_level_parameters
-	$Label_Score.text = "Final Score : " + str(level_parameters.score)
+	$Label_Score.text = "Score : " + str(level_parameters.score)

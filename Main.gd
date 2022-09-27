@@ -1,6 +1,5 @@
 extends Node
 
-
 onready var current_scene = $TitlescreenScene
 onready var gSounds = {
 	paddle_hit = $SoundManager/paddle_hit,
@@ -21,6 +20,7 @@ func change(scene):
 	
 	next_scene.connect("scene_changed", self, "change")
 	next_scene.connect("play_sound", self, "play_sound")
+	next_scene.load_level_parameters(current_scene.level_parameters)
 	
 	current_scene.queue_free()
 	current_scene = next_scene
@@ -30,4 +30,4 @@ func play_sound(sound):
 	gSounds[sound].play()
 
 func _on_Timer_timeout():
-	current_scene.set_process(true)
+	current_scene.start()

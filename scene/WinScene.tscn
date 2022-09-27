@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/fonts/font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/WinScene.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=3]
 size = 28
@@ -13,6 +14,7 @@ font_data = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -204, -44 )
+script = ExtResource( 2 )
 
 [node name="Label_Win" type="Label" parent="."]
 anchor_top = 0.334
@@ -35,7 +37,7 @@ text = "Score : 0"
 align = 1
 valign = 1
 
-[node name="Button_Start" type="Button" parent="."]
+[node name="Button_Start" type="Button" parent="." groups=["button"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

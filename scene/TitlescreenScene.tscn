@@ -23,7 +23,7 @@ text = "BREAKOUT"
 align = 1
 valign = 1
 
-[node name="Button_Start" type="Button" parent="."]
+[node name="Button_Start" type="Button" parent="." groups=["button"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -37,7 +37,7 @@ focus_neighbour_bottom = NodePath("../Button_Highscore")
 custom_fonts/font = ExtResource( 3 )
 text = "START"
 
-[node name="Button_Highscore" type="Button" parent="."]
+[node name="Button_Highscore" type="Button" parent="." groups=["button"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

@@ -10,6 +10,7 @@ onready var ButtonLaunch = $UI/Button_Launch
 const levelMaker_scene = preload("res://entities/LevelMaker.tscn")
 
 var _serve = true
+var _level
 
 func _ready() -> void:
 	Ball.position.x = Player.position.x
@@ -36,8 +37,10 @@ func load_level() -> void:
 	levelMaker.position.y = 50
 	if (levelMaker.get_child_count() <= max(20, (level-1)*50)  or
 		levelMaker.get_child_count() >= level*50) :
-		levelMaker.queue_free()
+		levelMaker.free()
 		load_level()
+	else:
+		_level = get_node("LevelMaker")
 
 func _on_Ball_hit_wall() -> void:
 	play_sound("wall_hit")
@@ -47,7 +50,8 @@ func _on_Ball_hit_player() -> void:
 
 func _on_Ball_hit_brick() -> void:
 	play_sound("brick_hit_2")
-	if get_node("LevelMaker").get_child_count() <= 0 :
+	var bricks_total = _level.get_child_count()
+	if bricks_total <= 1:
 		change_scene("Win")
 
 func _on_Fallzone_body_entered(body):
@@ -56,6 +60,7 @@ func _on_Fallzone_body_entered(body):
 		play_sound("hurt")
 		HUD.health -= 1
 		if HUD.health <= 0:
+			level_parameters.score = HUD.score
 			change_scene("Gameover")
 
 func _on_Button_Launch_pressed() -> void:
