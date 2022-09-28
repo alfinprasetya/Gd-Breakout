@@ -55,6 +55,7 @@ collision_mask = 0
 shape = SubResource( 3 )
 
 [node name="Ball" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 90, 310 )
 scale = Vector2( 0.7, 0.7 )
 collision_layer = 2
@@ -87,6 +88,7 @@ __meta__ = {
 }
 
 [node name="Button_Launch" type="Button" parent="UI"]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

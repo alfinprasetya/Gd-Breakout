@@ -5,7 +5,8 @@ signal scene_changed(sceneName)
 signal play_sound(soundName)
 
 var level_parameters = {
-	score = 0
+	score = 0,
+	level = 1
 }
 
 func start():

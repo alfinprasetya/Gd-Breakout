@@ -10,6 +10,7 @@ func _input(_event: InputEvent) -> void:
 		get_tree().quit()
 
 func _on_Button_Start_pressed() -> void:
+	level_parameters.score = 0
 	change_scene("Titlescreen")
 	play_sound("confirm")
 

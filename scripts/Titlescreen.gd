@@ -1,32 +1,42 @@
 extends BaseScene
 
-onready var ButtonStart = $Button_Start
-onready var ButtonHigh = $Button_Highscore
+onready var MainMenu = $Menu_Main
+onready var LevelMenu = $Menu_Level
+onready var button = {
+	start = $Menu_Main/Button_Start,
+	highscore = $Menu_Main/Button_Highscore,
+	easy = $Menu_Level/Button_Easy,
+	medium = $Menu_Level/Button_Medium,
+	hard = $Menu_Level/Button_Hard,
+	insane = $Menu_Level/Button_Insane
+}
 
 func start() -> void:
-	ButtonStart.grab_focus()
+	button.start.grab_focus()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 
-func _on_Button_Start_pressed() -> void:
-	play_sound("confirm")
-	change_scene("Play")
 
+
+# Button Press Function
+func _on_Button_Start_pressed() -> void:
+	MainMenu.hide()
+	LevelMenu.show()
+	button.easy.grab_focus()
+	play_sound("confirm")
 func _on_Button_Highscore_pressed() -> void:
 	play_sound("confirm")
+func _on_Button_Level_pressed(level: int) -> void:
+	level_parameters.level = level
+	change_scene("Play")
 
-func _on_Button_Start_mouse_entered() -> void:
+# Button Mouse over Function
+func _on_Button_mouse_entered(index: String) -> void:
 	play_sound("paddle_hit")
-	ButtonStart.grab_focus()
+	button[index].grab_focus()
 
-func _on_Button_Highscore_mouse_entered() -> void:
-	play_sound("paddle_hit")
-	ButtonHigh.grab_focus()
-
-func _on_Button_Start_focus_entered() -> void:
-	play_sound("paddle_hit")
-
-func _on_Button_Highscore_focus_entered() -> void:
+# Button Focus Function
+func _on_Button_focus_entered() -> void:
 	play_sound("paddle_hit")

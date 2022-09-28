@@ -9,15 +9,17 @@ onready var ButtonLaunch = $UI/Button_Launch
 
 const levelMaker_scene = preload("res://entities/LevelMaker.tscn")
 
-var _serve = true
+var _serve = false
 var _level
 
-func _ready() -> void:
+func start() -> void:
+	Ball.show()
 	Ball.position.x = Player.position.x
-	ButtonLaunch.hide()
 	load_level()
+	_serve = true
 
 func _physics_process(_delta: float) -> void:
+	level_parameters.score = HUD.score
 	if _serve:
 		serve()
 
@@ -60,10 +62,14 @@ func _on_Fallzone_body_entered(body):
 		play_sound("hurt")
 		HUD.health -= 1
 		if HUD.health <= 0:
-			level_parameters.score = HUD.score
 			change_scene("Gameover")
 
 func _on_Button_Launch_pressed() -> void:
 	_serve = false
 	Ball.serve()
 	ButtonLaunch.hide()
+
+func load_level_parameters(new_level_parameters):
+	level_parameters = new_level_parameters
+	HUD.score = level_parameters.score
+	level = level_parameters.level

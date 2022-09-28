@@ -23,37 +23,94 @@ text = "BREAKOUT"
 align = 1
 valign = 1
 
-[node name="Button_Start" type="Button" parent="." groups=["button"]]
+[node name="Menu_Main" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = 60.0
-margin_right = 50.0
-margin_bottom = 80.0
+margin_left = -48.0
+margin_top = 50.0
+margin_right = 48.0
+margin_bottom = 24.0
+
+[node name="Button_Start" type="Button" parent="Menu_Main"]
+margin_right = 96.0
+margin_bottom = 22.0
 focus_neighbour_top = NodePath("../Button_Highscore")
 focus_neighbour_bottom = NodePath("../Button_Highscore")
 custom_fonts/font = ExtResource( 3 )
 text = "START"
 
-[node name="Button_Highscore" type="Button" parent="." groups=["button"]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = 90.0
-margin_right = 50.0
-margin_bottom = 110.0
+[node name="Button_Highscore" type="Button" parent="Menu_Main"]
+margin_top = 26.0
+margin_right = 96.0
+margin_bottom = 48.0
 focus_neighbour_top = NodePath("../Button_Start")
 focus_neighbour_bottom = NodePath("../Button_Start")
 custom_fonts/font = ExtResource( 3 )
 text = "HIGHSCORE"
 
-[connection signal="focus_entered" from="Button_Start" to="." method="_on_Button_Start_focus_entered"]
-[connection signal="mouse_entered" from="Button_Start" to="." method="_on_Button_Start_mouse_entered"]
-[connection signal="pressed" from="Button_Start" to="." method="_on_Button_Start_pressed"]
-[connection signal="focus_entered" from="Button_Highscore" to="." method="_on_Button_Highscore_focus_entered"]
-[connection signal="mouse_entered" from="Button_Highscore" to="." method="_on_Button_Highscore_mouse_entered"]
-[connection signal="pressed" from="Button_Highscore" to="." method="_on_Button_Highscore_pressed"]
+[node name="Menu_Level" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = 50.0
+margin_right = 48.0
+margin_bottom = 24.0
+
+[node name="Button_Easy" type="Button" parent="Menu_Level"]
+margin_right = 96.0
+margin_bottom = 22.0
+focus_neighbour_top = NodePath("../Button_Insane")
+focus_neighbour_bottom = NodePath("../Button_Medium")
+custom_fonts/font = ExtResource( 3 )
+text = "EASY"
+
+[node name="Button_Medium" type="Button" parent="Menu_Level"]
+margin_top = 26.0
+margin_right = 96.0
+margin_bottom = 48.0
+focus_neighbour_top = NodePath("../Button_Easy")
+focus_neighbour_bottom = NodePath("../Button_Hard")
+custom_fonts/font = ExtResource( 3 )
+text = "MEDIUM"
+
+[node name="Button_Hard" type="Button" parent="Menu_Level"]
+margin_top = 52.0
+margin_right = 96.0
+margin_bottom = 74.0
+focus_neighbour_top = NodePath("../Button_Medium")
+focus_neighbour_bottom = NodePath("../Button_Insane")
+custom_fonts/font = ExtResource( 3 )
+text = "HARD"
+
+[node name="Button_Insane" type="Button" parent="Menu_Level"]
+margin_top = 78.0
+margin_right = 96.0
+margin_bottom = 100.0
+focus_neighbour_top = NodePath("../Button_Hard")
+focus_neighbour_bottom = NodePath("../Button_Easy")
+custom_fonts/font = ExtResource( 3 )
+text = "INSANE"
+
+[connection signal="focus_entered" from="Menu_Main/Button_Start" to="." method="_on_Button_focus_entered"]
+[connection signal="mouse_entered" from="Menu_Main/Button_Start" to="." method="_on_Button_mouse_entered" binds= [ "start" ]]
+[connection signal="pressed" from="Menu_Main/Button_Start" to="." method="_on_Button_Start_pressed"]
+[connection signal="focus_entered" from="Menu_Main/Button_Highscore" to="." method="_on_Button_focus_entered"]
+[connection signal="mouse_entered" from="Menu_Main/Button_Highscore" to="." method="_on_Button_mouse_entered" binds= [ "highscore" ]]
+[connection signal="pressed" from="Menu_Main/Button_Highscore" to="." method="_on_Button_Highscore_pressed"]
+[connection signal="focus_entered" from="Menu_Level/Button_Easy" to="." method="_on_Button_focus_entered"]
+[connection signal="mouse_entered" from="Menu_Level/Button_Easy" to="." method="_on_Button_mouse_entered" binds= [ "easy" ]]
+[connection signal="pressed" from="Menu_Level/Button_Easy" to="." method="_on_Button_Level_pressed" binds= [ 1 ]]
+[connection signal="focus_entered" from="Menu_Level/Button_Medium" to="." method="_on_Button_focus_entered"]
+[connection signal="mouse_entered" from="Menu_Level/Button_Medium" to="." method="_on_Button_mouse_entered" binds= [ "medium" ]]
+[connection signal="pressed" from="Menu_Level/Button_Medium" to="." method="_on_Button_Level_pressed" binds= [ 2 ]]
+[connection signal="focus_entered" from="Menu_Level/Button_Hard" to="." method="_on_Button_focus_entered"]
+[connection signal="mouse_entered" from="Menu_Level/Button_Hard" to="." method="_on_Button_mouse_entered" binds= [ "hard" ]]
+[connection signal="pressed" from="Menu_Level/Button_Hard" to="." method="_on_Button_Level_pressed" binds= [ 3 ]]
+[connection signal="focus_entered" from="Menu_Level/Button_Insane" to="." method="_on_Button_focus_entered"]
+[connection signal="mouse_entered" from="Menu_Level/Button_Insane" to="." method="_on_Button_mouse_entered" binds= [ "insane" ]]
+[connection signal="pressed" from="Menu_Level/Button_Insane" to="." method="_on_Button_Level_pressed" binds= [ 4 ]]
